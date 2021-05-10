@@ -1,3 +1,6 @@
+/* Caleb Seely 5/10/21
+* g++ -std=c++11 word_search.cpp -g
+*/
 #include <iostream>
 #include <string.h>
 #include <fstream>
