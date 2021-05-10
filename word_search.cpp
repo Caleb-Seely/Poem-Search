@@ -61,7 +61,7 @@ void Keyword( string token, int word_cnt) {
    
 }
 
-void permute(vector<string> a, int l, int r, int total)
+void permutations(vector<string> a, int l, int r)
 {
     string new_permutation;
     string token;
@@ -69,8 +69,8 @@ void permute(vector<string> a, int l, int r, int total)
 
     if (l == r){
       //Turn the new input permutation to a string
-      for(int i = total; i >0 ;i--){
-         new_permutation.append(a[i-1]);
+      for(int i = r; i >=0 ;i--){
+         new_permutation.append(a[i]);
          new_permutation = new_permutation+" ";
       }   
       //cout <<"New: "<<  new_permutation << endl;
@@ -91,7 +91,7 @@ void permute(vector<string> a, int l, int r, int total)
             swap(a[l], a[i]);
  
             // Recursion called
-            permute(a, l+1, r, total);
+            permutations(a, l+1, r);
  
             //backtrack
             swap(a[l], a[i]);
@@ -152,22 +152,22 @@ int main(){
    string input; 
    string token; 
    
-   vector <string> permutation;
+   vector <string> token_list;
 
-   int token_combonations =0;
+   int token_count =0;
 
   
    cout << "Hello, please enter the words you remember\n";
    getline(cin,input);
-   stringstream token_count(input);
+   stringstream token_line(input);
 
-   while (token_count >> token)
+   while (token_line >> token)
    {
-      token_combonations++;
-      permutation.push_back(token);      //Adds each search word to a vactor
+      token_count++;
+      token_list.push_back(token);      //Adds each search word to a vactor
    }
 
-   permute(permutation, 0, token_combonations-1, token_combonations);
+   permutations(token_list, 0, token_count-1);
    
    if (best_accuracy == 0)
    {
@@ -177,7 +177,6 @@ int main(){
    {
          cout << "\nThe most likely line is:\n" << most_accurate_str << endl;
          //cout << "With and accuracy of: " << best_accuracy <<endl;
-   }
-   
+   }  
    
 }
